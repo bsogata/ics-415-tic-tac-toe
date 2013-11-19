@@ -120,43 +120,43 @@ function highlightWin(mark)
     $("#square1").css("background-color", getWinColor(mark));
     $("#square2").css("background-color", getWinColor(mark));
   }  
-  else if (($("#square3").text() == mark) && ($("#square4").text() == mark) && ($("#square5").text() == mark))
+  if (($("#square3").text() == mark) && ($("#square4").text() == mark) && ($("#square5").text() == mark))
   {
     $("#square3").css("background-color", getWinColor(mark));
     $("#square4").css("background-color", getWinColor(mark));
     $("#square5").css("background-color", getWinColor(mark));
   }  
-  else if (($("#square6").text() == mark) && ($("#square7").text() == mark) && ($("#square8").text() == mark))
+  if (($("#square6").text() == mark) && ($("#square7").text() == mark) && ($("#square8").text() == mark))
   {
     $("#square6").css("background-color", getWinColor(mark));
     $("#square7").css("background-color", getWinColor(mark));
     $("#square8").css("background-color", getWinColor(mark));
   }
-  else if (($("#square0").text() == mark) && ($("#square3").text() == mark) && ($("#square6").text() == mark))
+  if (($("#square0").text() == mark) && ($("#square3").text() == mark) && ($("#square6").text() == mark))
   {
     $("#square0").css("background-color", getWinColor(mark));
     $("#square3").css("background-color", getWinColor(mark));
     $("#square6").css("background-color", getWinColor(mark));
   }
-  else if (($("#square1").text() == mark) && ($("#square4").text() == mark) && ($("#square7").text() == mark))
+  if (($("#square1").text() == mark) && ($("#square4").text() == mark) && ($("#square7").text() == mark))
   {
     $("#square1").css("background-color", getWinColor(mark));
     $("#square4").css("background-color", getWinColor(mark));
     $("#square7").css("background-color", getWinColor(mark));  
   }
-  else if (($("#square2").text() == mark) && ($("#square5").text() == mark) && ($("#square8").text() == mark))
+  if (($("#square2").text() == mark) && ($("#square5").text() == mark) && ($("#square8").text() == mark))
   {
     $("#square2").css("background-color", getWinColor(mark));
     $("#square5").css("background-color", getWinColor(mark));
     $("#square8").css("background-color", getWinColor(mark));
   }
-  else if (($("#square0").text() == mark) && ($("#square4").text() == mark) && ($("#square8").text() == mark))
+  if (($("#square0").text() == mark) && ($("#square4").text() == mark) && ($("#square8").text() == mark))
   {
     $("#square0").css("background-color", getWinColor(mark));
     $("#square4").css("background-color", getWinColor(mark));
     $("#square8").css("background-color", getWinColor(mark));
   }
-  else if (($("#square2").text() == mark) && ($("#square4").text() == mark) && ($("#square6").text() == mark))
+  if (($("#square2").text() == mark) && ($("#square4").text() == mark) && ($("#square6").text() == mark))
   {
     $("#square2").css("background-color", getWinColor(mark));
     $("#square4").css("background-color", getWinColor(mark));
