@@ -8,6 +8,12 @@
 </head>
 
 <body>
+  <?php 
+    // Start with creating the SQL tables if they do not already exist
+    include 'create_tables.php' 
+    
+    // Create a new Game
+  ?>
   <table>
     <tr>
       <td>
