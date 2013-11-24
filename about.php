@@ -1,13 +1,5 @@
 <!DOCTYPE HTML>
 
-<!-- Creates or edits the cookie containing the user name -->
-<?php
-  if ((isset($_POST["username"])) && ($_POST["username"] != ""))
-  {
-    setcookie("username", $_POST["username"]);
-  }
-?>
-
 <html>
 <head>
   <title>Tic-Tac-Toe</title>
@@ -40,11 +32,23 @@
         <li><a href="about.php">About</a></li>
       </ul>
     </nav>
-    <form id="login" name="login" method="post">
-      Username: <input type="text" id="username" /><br />
-      Password: <input type="password" id="password" /><br />
-      <input type="submit" id="submit" value="Login" />
-    </form>
+
+    <p>
+      Designed and created by [insert clever team name here].
+    </p>
+    <p>
+      This application uses the following technologies:
+    </p>
+    <ul>
+      <li>HTML</li>
+      <li>JavaScript
+        <ul>
+          <li>jQuery</li>
+        </ul>
+      </li>
+      <li>PHP</li>
+      <li>Twitter Bootstrap</li>
+    </ul>
   </div>
 </body>
 </html>
