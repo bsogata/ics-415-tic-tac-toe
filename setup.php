@@ -29,7 +29,32 @@
   <?php include 'create_tables.php'; ?>
   <div class="container">
     <?php include 'navbar.php'; ?>
+    
+    <select id="opponent_select" onchange="sendInvitation">
+      <?php 
+        $database = new mysqli("localhost", "username", "password", "tic-tac-toe");
+        
+        if ($database->connect_errno)
+        {
+          echo "Failed to connect to MySQL: (" . $database->connect_errno . ")" . $database->connect_error . "<br />";
+        }
+        else
+        {        
+          $results = $database->query("SELECT U.username FROM Users U");
 
+          if ($results)
+          {
+            foreach ($results as $row)
+            {
+              if (($row['username'] != $_COOKIE['username']) && ($row['username'] != $_POST['username']))
+              {
+                echo "<option>" . $row['username'] . "</option>";
+              }
+            }            
+          }
+        }
+      ?>
+    </select>
   </div>
 </body>
 </html>

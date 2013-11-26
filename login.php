@@ -17,7 +17,7 @@
     {
       // echo "Connection successful";
       $result = $database->query("SELECT * " .
-                                 "FROM Users U" . 
+                                 "FROM Users U " . 
                                  "WHERE U.username=\"" . $username . "\" AND " . 
                                        "U.password=\"" . $password . "\"");
       $found_user = true;
@@ -29,14 +29,19 @@
                                "FROM Users U" . 
                                "WHERE U.username=\"" . $username . "\"");
         $insert_query = "INSERT INTO Users (username, password, wins, losses, draws)" . 
-                               "VALUES (\"" . $username . "\"," .
-                                       "\"" . $password . "\"," . 
-                                       "\"0\", \"0\", \"0\")";
+                        "VALUES (\"" . $username . "\"," .
+                                "\"" . $password . "\"," . 
+                                "\"0\", \"0\", \"0\")";
         $insert_result = $database->query($insert_query);
         
         if ((!$user_result) && (!$insert_result))
         {
           echo "Could not access account with username " . $username;
+          $found_user = false;
+        }
+        else if (!$user_result)
+        {
+          echo "Invalid password for username " . $username;
           $found_user = false;
         }
       }

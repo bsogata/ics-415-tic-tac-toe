@@ -196,3 +196,14 @@ function getWinColor(mark)
   
   return color;
 }
+
+/*
+ * Sends an invitation to the user currently selected.
+ *
+ */
+ 
+function sendInvitation()
+{
+  var selection = $("#opponent_select option:selected").text();
+  alert(selection);
+}

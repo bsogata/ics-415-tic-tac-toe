@@ -5,7 +5,7 @@
     <li><a href="setup.php">Games</a></li>
     <li><a href="about.php">About</a></li>
     <?php
-      if ((isset($_COOKIE['username'])) || (isset($_POST['usernme'])))
+      if ((isset($_COOKIE['username'])) || (isset($_POST['username'])))
       {
         echo '<li><a href="logout.php">Sign Out</a></li>';
       }
