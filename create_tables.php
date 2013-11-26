@@ -7,14 +7,14 @@
   }
   else
   {
-    $users = $database->query("CREATE TABLE IF NOT EXISTS Users (email CHAR(128),
+    $users = $database->query("CREATE TABLE IF NOT EXISTS Users (username CHAR(128) PRIMARY KEY,
                                                                  password CHAR(128),
                                                                  wins INTEGER,
                                                                  losses INTEGER,
                                                                  draws INTEGER)");
                                       
-    $games = $database->query("CREATE TABLE IF NOT EXISTS Games (xid INTEGER NOT NULL,
-                                                                 oid INTEGER NOT NULL,
+    $games = $database->query("CREATE TABLE IF NOT EXISTS Games (xname CHAR(128) NOT NULL,
+                                                                 oname CHAR(128) NOT NULL,
                                                                  square0 INTEGER,
                                                                  square1 INTEGER,
                                                                  square2 INTEGER,

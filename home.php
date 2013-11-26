@@ -1,5 +1,8 @@
 <!DOCTYPE HTML>
 
+<!-- Creates or edits the cookie containing the user name -->
+<?php include 'login.php'; ?>
+
 <html>
 <head>
   <title>Tic-Tac-Toe</title>
@@ -23,32 +26,14 @@
 </head>
 
 <body>
+  <?php include 'create_tables.php'; ?>
   <div class="container">
-    <!-- Navbar; use on all pages -->
-    <nav class="navbar navbar-default" role="navigation">
-      <a class="navbar-brand" href="#">Tic-Tac-Toe</a>
-      <ul class="nav navbar-nav">
-        <li><a href="list.php">Games</a></li>
-        <li><a href="about.php">About</a></li>
-      </ul>
-    </nav>
-
-    <p>
-      Designed and created by [insert clever name here].
-    </p>
-    <p>
-      This application uses the following technologies:
-    </p>
-    <ul>
-      <li>HTML</li>
-      <li>JavaScript
-        <ul>
-          <li>jQuery</li>
-        </ul>
-      </li>
-      <li>PHP</li>
-      <li>Twitter Bootstrap</li>
-    </ul>
+    <?php include 'navbar.php'; ?>
+    <form id="login" name="login" action="setup.php" method="post">
+      Username: <input type="text" id="username" name="username" /><br />
+      Password: <input type="password" id="password" name="password" /><br />
+      <input type="submit" id="submit" value="Login" />
+    </form>
   </div>
 </body>
 </html>

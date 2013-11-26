@@ -1,5 +1,8 @@
 <!DOCTYPE HTML>
 
+<!-- Creates or edits the cookie containing the user name -->
+<?php include 'login.php'; ?>
+
 <html>
 <head>
   <title>Tic-Tac-Toe</title>
@@ -23,15 +26,9 @@
 </head>
 
 <body>
+  <?php include 'create_tables.php'; ?>
   <div class="container">
-    <!-- Navbar; use on all pages -->
-    <nav class="navbar navbar-default" role="navigation">
-      <a class="navbar-brand" href="login.php">Tic-Tac-Toe</a>
-      <ul class="nav navbar-nav">
-        <li><a href="setup.php">Games</a></li>
-        <li><a href="about.php">About</a></li>
-      </ul>
-    </nav>
+    <?php include 'navbar.php'; ?>
 
   </div>
 </body>
