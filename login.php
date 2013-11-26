@@ -46,9 +46,10 @@
         }
       }
       
-      if ($found_user)
+      if (($found_user) && (!isset($_COOKIE['username'])))
       {
         setcookie("username", $_POST["username"]);
+        header("Location: /");
       }
     }
   }
