@@ -30,7 +30,7 @@
   <div class="container">
     <?php include 'navbar.php'; ?>
     
-    <select id="opponent_select" onchange="sendInvitation">
+    <select id="opponent_select" onchange="sendInvitation()">
       <option>Select an opponent</option>
       <?php 
         $database = new mysqli("localhost", "username", "password", "tic-tac-toe");
