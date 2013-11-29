@@ -205,5 +205,10 @@ function getWinColor(mark)
 function sendInvitation()
 {
   var selection = $("#opponent_select option:selected").text();
-  alert(selection);
+  
+  // If a user name was selected, then create an invitation in the database
+  if (selection != 'Select an opponent')
+  {
+    window.location.href = "setup.php";
+  }
 }
