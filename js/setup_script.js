@@ -110,9 +110,12 @@ function accept(initiator, recipient)
  
 function decline(initiator, recipient)
 {
-  $.post("decline_game.php", "{initiator: " + initiator + "} " + 
-                             "{recipient: " + recipient + "}");
-  window.location.replace("setup.php");
+  $.post("decline_game.php", {initiator: initiator, 
+                              recipient: recipient}).done(function(data)
+                              {
+                                $("body").append(data);
+                                window.location.replace("setup.php");
+                              });
 }
 
 /*
