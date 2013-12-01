@@ -63,13 +63,27 @@ $(document).ready(function()
         if ((name == "turn") && (move != value))
         {
           move = value;
+          
+          if (move >= 8)
+          {
+            alert("The game is a draw!");
+          }          
         }
         // Update square if the values do not match
         else if ($("#" + name).text() != mark)
         {
           $("#" + name).text(mark);
+          
+          // Check if a player won
+          if (checkRows(getMark(move)) || 
+              checkColumns(getMark(move)) || 
+              checkDiagonals(getMark(move)))
+          {
+            alert("Player " + getMark(move) + " won!");
+            $("div.square").unbind('click');
+            highlightWin(getMark(move));
+          }
         }
-        
       }
     });
   }
