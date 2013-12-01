@@ -20,7 +20,7 @@
 
   <script src="js/bootstrap.min.js"></script>
   
-  <script src="js/script.js"></script>
+  <script src="js/board_script.js"></script>
   <link href="css/style.css" rel="stylesheet" type="text/css">  
 </head>
 
