@@ -14,7 +14,10 @@
     $database->query("UPDATE Invitations " .
                      "SET accepted=TRUE " . 
                      "WHERE initiator=\"" . $initiator . "\" AND recipient=\"" . $recipient . "\"");
-                           
-    // Create new Game entry here
+    
+    // Create new Game entry
+    $database->query("INSERT INTO Games (xname, oname, square0, square1, square2, square3, 
+                                         square4, square5, square6, square7, square8, turn) " .
+                     "VALUES (\"" . $recipient . "\", \"" . $initiator . "\", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)");
   }  
 ?>
