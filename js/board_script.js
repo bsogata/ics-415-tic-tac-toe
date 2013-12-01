@@ -67,6 +67,8 @@ $(document).ready(function()
           if (move >= 8)
           {
             alert("The game is a draw!");
+            $.post("end_game.php", {xname: $("#player_x_name").text(),  
+                                    oname: $("#player_o_name").text()});
           }          
         }
         // Update square if the values do not match
@@ -82,6 +84,8 @@ $(document).ready(function()
             alert("Player " + getMark(move) + " won!");
             $("div.square").unbind('click');
             highlightWin(getMark(move));
+            $.post("end_game.php", {xname: $("#player_x_name").text(),  
+                                    oname: $("#player_o_name").text()});
           }
         }
       }
