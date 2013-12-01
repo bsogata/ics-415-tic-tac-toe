@@ -91,9 +91,12 @@ function closeConnection()
  
 function accept(initiator, recipient)
 {
-  $.post("start_game.php", "{initiator: " + initiator + "} " + 
-                           "{recipient: " + recipient + "}");
-  window.location.replace("game.php");
+  $.post("start_game.php", "{\"initiator\": " + initiator + ", " + 
+                            "\"recipient\": " + recipient + "}").fail(function()
+                            {
+                              alert("Error");
+                            });
+//  window.location.replace("game.php");
 }
 
 /*

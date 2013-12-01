@@ -61,7 +61,12 @@
         // If the invitation has not already been accepted or declined
         if ($row['accepted'] != "TRUE" && $row['declined'] != "TRUE")
         {
-          $message .= "Invitation:" . $row['initiator'] . ";";
+          if (strlen($message) == 0)
+          {
+            $message .= "Invitation:";
+          }
+          
+          $message .= $row['initiator'] . ";";
         }
       } 
     }

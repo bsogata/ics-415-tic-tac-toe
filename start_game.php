@@ -1,7 +1,9 @@
 <?php
   $initiator = $_POST['initiator'];
   $recipient = $_POST['recipient'];
-  
+
+  this should cause an error  
+ 
   $database = new mysqli("localhost", "username", "password", "tic-tac-toe");
   
   if ($database->connect_errno)
