@@ -1,8 +1,7 @@
 <?php
+  echo var_dump($_POST);
   $initiator = $_POST['initiator'];
   $recipient = $_POST['recipient'];
-
-  this should cause an error  
  
   $database = new mysqli("localhost", "username", "password", "tic-tac-toe");
   
