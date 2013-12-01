@@ -5,11 +5,25 @@ $(document).ready(function()
   // Any click on a square
   $("div.square").click(function()
   {
-    // If the square is empty
-    if ($(this).text().length == 0)
+    // Find the player who should move next
+    var nextPlayer = (getMark(move) == "X") ? 
+                     ($("#player_x_name").text()) : 
+                     ($("#player_o_name").text());
+    
+    // If the square is empty and the current user is the one to move next
+    if (($(this).text().length == 0) && (getUsername() == nextPlayer))
     {
       // Places the appropriate mark
       $(this).text(getMark(move));  
+      
+      alert("Mover: " + nextPlayer + "; Square: " + $(this).attr('id') + "; mark: " + ((getMark(move) == "X") ? (1) : (-1)));
+      // Make changes to database
+      $.post("make_move.php", {mover: nextPlayer, 
+                               square: $(this).attr("id"),
+                               mark: (getMark(move) == "X") ? (1) : (-1)}).done(function(data)
+        {
+          $("body").append(data);
+        });
       
       // Check if a player won
       if (checkRows(getMark(move)) || 
@@ -195,4 +209,34 @@ function getWinColor(mark)
   }
   
   return color;
+}
+
+/*
+ * Returns the value of the username cookie.
+ *
+ * Returns:
+ *   A string containing the value of the username cookie.
+ *   If none, returns "Guest".
+ *
+ */
+ 
+function getUsername()
+{
+  var username = "Guest";
+  var start_index = document.cookie.indexOf("username=");
+  
+  if (start_index != -1)
+  {
+    start_index += 9;
+    var end_index = document.cookie.indexOf(";", start_index);
+    
+    if (end_index == -1)
+    {
+      end_index = document.cookie.length;
+    }
+    
+    username = document.cookie.substring(start_index, end_index);
+  }
+ 
+  return username;
 }

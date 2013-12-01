@@ -32,7 +32,7 @@
   <div class="container">
     <?php include 'navbar.php' ?>
 
-    <table>
+    <table id="board">
       <tr>
         <td>
           <div id="square0" class="square"></div>
@@ -66,7 +66,48 @@
           <div id="square8" class="square"></div>
         </td>
       </tr>
-    </table>  
+    </table>
+
+    <!-- Load in the data for the stats table here -->
+    <?php
+      $database = new mysqli("localhost", "username", "password", "tic-tac-toe");
+      
+      if ($database->connect_errno)
+      {
+        echo "Failed to connect to MySQL: (" . $database->connect_errno . ")" . $database->connect_error . "<br />";
+      }
+      else
+      {        
+        $username = (isset($_COOKIE['username'])) ? ($_COOKIE['username']) : ('guest');
+        $current_game = $database->query("SELECT * FROM Games G WHERE G.xname=\"" . $username . "\" OR " .
+                                                                     "G.oname=\"" . $username . "\" LIMIT 1");
+                                                      
+        foreach ($current_game as $row)
+        {
+          $xname = $row['xname'];
+          $oname = $row['oname'];
+          
+          // Get records for each player as well
+        }
+      }
+    ?>
+      <table id="stats" border="1">
+        <tr>
+          <th>Mark</th>
+          <th>Name</th>
+          <th>Record</th>
+        </tr>
+        <tr>
+          <td>X</td>
+          <td id="player_x_name"><?php echo $xname; ?></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>O</td>
+          <td id="player_o_name"><?php echo $oname; ?></td>
+          <td></td>
+        </tr>
+      </table>    
   </div>
 </body>
 </html>

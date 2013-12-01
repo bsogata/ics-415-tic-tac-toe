@@ -58,6 +58,16 @@
   border-left: 1px solid black;
 }
 
+table#board
+{
+  float: left;
+}
+
+table#stats
+{
+  float: left;
+}
+
 .square
 {
   line-height: 64px;
@@ -77,3 +87,4 @@
 {
   background-color: blue;
 }
+
