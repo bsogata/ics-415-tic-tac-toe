@@ -34,7 +34,7 @@
       foreach ($initiator_query as $row)
       {
         // If the invitation was accepted
-        if ($row['accepted'] == "TRUE")
+        if ($row['accepted'] == TRUE)
         {
           $message = "Accepted:" . $row['recipient'];
           
@@ -43,7 +43,7 @@
                                                          "recipient=\"" . $row['recipient'] . "\";");
         } 
         // If the invitation was declined
-        else if ($row['declined'] == "TRUE")
+        else if ($row['declined'] == TRUE)
         {
           $message = "Declined:" . $row['recipient'];
           
@@ -58,14 +58,11 @@
     {
       foreach ($recipient_query as $row)
       {
-        $message .= "Invitation:" . $row['initiator'] . "\n";
-
-        // Remove the corresponding invitation from the database
-        $database->query("DELETE FROM Invitations WHERE initiator=\"" . $row['initiator'] . "\" AND " .
-                                                       "recipient=\"" . $username . "\";");
-        
-        $message .= "Errors: " . $database->error;
-
+        // If the invitation has not already been accepted or declined
+        if ($row['accepted'] != "TRUE" && $row['declined'] != "TRUE")
+        {
+          $message .= "Invitation:" . $row['initiator'] . ";";
+        }
       } 
     }
     
