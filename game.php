@@ -88,6 +88,12 @@
           $oname = $row['oname'];
           
           // Get records for each player as well
+          $xuser_result = $database->query("SELECT U.wins, U.losses, U.draws " .
+                                           "FROM Users U " .
+                                           "WHERE U.username=\"" . $xname . "\" LIMIT 1")->fetch_row();
+          $ouser_result = $database->query("SELECT U.wins, U.losses, U.draws " .
+                                           "FROM Users U " .
+                                           "WHERE U.username=\"" . $oname . "\" LIMIT 1")->fetch_row();
         }
       }
     ?>
@@ -95,17 +101,17 @@
         <tr>
           <th>Mark</th>
           <th>Name</th>
-          <th>Record</th>
+          <th>Record (Win-Loss-Draw)</th>
         </tr>
         <tr>
           <td>X</td>
           <td id="player_x_name"><?php echo $xname; ?></td>
-          <td></td>
+          <td><?php echo $xuser_result[0] . "-" . $xuser_result[1] . "-" . $xuser_result[2] ?></td>
         </tr>
         <tr>
           <td>O</td>
           <td id="player_o_name"><?php echo $oname; ?></td>
-          <td></td>
+          <td><?php echo $ouser_result[0] . "-" . $ouser_result[1] . "-" . $ouser_result[2] ?></td>
         </tr>
       </table>    
   </div>

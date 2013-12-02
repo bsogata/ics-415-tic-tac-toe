@@ -7,7 +7,22 @@
   }
   else
   {
+    // Remove the game from the database
     $database->query("DELETE FROM Games WHERE xname=\"" . $_POST['xname'] . "\" OR " .
                                              "oname=\"" . $_POST['oname'] . "\";");
+                                           
+    // Update the records for both players
+    $x_user = $database->query("UPDATE Users " . 
+                               "SET " . (($_POST['winner'] == " ") ? 
+                                         ("draws = draws + 1") : 
+                                         (($_POST['winner'] == "X") ? ("wins = wins + 1") : 
+                                                                      ("losses = losses + 1"))) . " " .
+                               "WHERE username=\"" . $_POST['xname'] . "\";");
+    $o_user = $database->query("UPDATE Users " . 
+                               "SET " . (($_POST['winner'] == " ") ? 
+                                         ("draws = draws + 1") : 
+                                         (($_POST['winner'] == "O") ? ("wins = wins + 1") : 
+                                                                      ("losses = losses + 1"))) . " " .
+                               "WHERE username=\"" . $_POST['oname'] . "\";");    
   }
 ?>

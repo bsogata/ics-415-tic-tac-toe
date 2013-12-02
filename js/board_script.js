@@ -34,10 +34,12 @@ $(document).ready(function()
         alert("Player " + getMark(move) + " won!");
         $("div.square").unbind('click');
         highlightWin(getMark(move));
+        closeConnection();      
       }
       else if (move >= 8)
       {
         alert("The game is a draw!");
+        closeConnection();
       }
 
       move++;
@@ -64,11 +66,16 @@ $(document).ready(function()
         {
           move = value;
           
-          if (move >= 8)
+          if (move > 8)
           {
             alert("The game is a draw!");
             $.post("end_game.php", {xname: $("#player_x_name").text(),  
-                                    oname: $("#player_o_name").text()});
+                                    oname: $("#player_o_name").text(),
+                                    winner: " "}).done(function(data)
+            {
+              $("body").append(data);
+              closeConnection();
+            });
           }          
         }
         // Update square if the values do not match
@@ -85,7 +92,12 @@ $(document).ready(function()
             $("div.square").unbind('click');
             highlightWin(getMark(move));
             $.post("end_game.php", {xname: $("#player_x_name").text(),  
-                                    oname: $("#player_o_name").text()});
+                                    oname: $("#player_o_name").text(),
+                                    winner: getMark(move)}).done(function(data)
+            {
+              $("body").append(data);
+              closeConnection();
+            });
           }
         }
       }
@@ -288,4 +300,14 @@ function getUsername()
   }
  
   return username;
+}
+
+/*
+ * Stops server-side events.
+ *
+ */
+
+function closeConnection()
+{
+  source.close();
 }
