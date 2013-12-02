@@ -283,7 +283,7 @@ function getWinColor(mark)
  
 function getUsername()
 {
-  var username = "Guest";
+  var username = "guest";
   var start_index = document.cookie.indexOf("username=");
   
   if (start_index != -1)
