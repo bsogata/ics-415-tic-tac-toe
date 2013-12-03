@@ -49,7 +49,7 @@
       if (($found_user) && (!isset($_COOKIE['username'])))
       {
         setcookie("username", $_POST["username"]);
-        header("Location: " . $_SERVER['PATH_INFO']);
+        header("Location: " . 'setup.php');
       }
     }
   }

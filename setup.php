@@ -27,7 +27,6 @@
 
 <body>
   <?php include 'create_tables.php'; ?>
-  <?php echo var_dump($_POST); ?>
   <div class="container">
     <?php include 'navbar.php'; ?>
     
