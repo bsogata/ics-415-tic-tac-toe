@@ -29,7 +29,14 @@
   <?php include 'create_tables.php'; ?>
   <div class="container">
     <?php include 'navbar.php'; ?>
-    <form id="login" name="login" action="setup.php" method="post">
+    <?php 
+      if (isset($_COOKIE['error']))
+      {
+        echo $_COOKIE['error'] . "<br />";
+        setcookie('error', '', time() - 3600);
+      }
+    ?>
+    <form id="login" name="login" action="login.php" method="post">
       Username: <input type="text" id="username" name="username" /><br />
       Password: <input type="password" id="password" name="password" /><br />
       <input type="submit" id="submit" value="Login" />

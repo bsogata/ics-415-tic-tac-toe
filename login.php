@@ -36,12 +36,12 @@
         
         if (!$user_result)
         {
-          echo "Invalid password for username " . $username;
+          setcookie("error", "Invalid password for username " . $username);
           $found_user = false;
         }
         else if (!$insert_result)
         {
-          echo "Could not access account with username " . $username;
+          setcookie("error", "Could not access account with username " . $username);
           $found_user = false;
         }
       }
@@ -50,6 +50,10 @@
       {
         setcookie("username", $_POST["username"]);
         header("Location: " . 'setup.php');
+      }
+      else
+      {
+        header("Location: " . 'home.php');
       }
     }
   }

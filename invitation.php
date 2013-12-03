@@ -71,12 +71,8 @@
       } 
     }
     
-    // Only send message if there is information to send
-    if (strlen($message) > 0)
-    {
-      $serverTime = time();
-      sendMsg($serverTime, $message);
-    }
+    $serverTime = time();
+    sendMsg($serverTime, $message);
     
     sleep(1); 
   }

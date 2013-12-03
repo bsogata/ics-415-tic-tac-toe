@@ -15,6 +15,7 @@ $(document).ready(function()
       if (message.indexOf("Accepted:") != -1)
       {
         window.location.href = "game.php";
+        closeConnection();
       }
       
       // Else if this user is the initiator and the response is negative,
@@ -23,17 +24,20 @@ $(document).ready(function()
       {
         alert(message.substring(9, message.length) + " declined the invitation");
         window.location.href = "setup.php";
+        closeConnection();
       }
       
       // Else this user is the recipient,
-      // so display options to accept or decline offer
-      else if (message.indexOf("Invitation:") != -1)
+      // so display options to accept or decline offer;
+      // also handle cases where the only invitation has been cancelled
+      else if (($("#content").children().first().prop("nodeName").toLowerCase() != "form") || (message.indexOf("Invitation:") != -1))
       {
         var invitation_div = $("<div></div>").attr("id", "invitation")
                                              .attr("name", "invitation")
                                              .attr("action", "setup.php")
                                              .attr("method", "post");
         
+        var initial_invitations = $(".invite_message").size();
         var initiators = message.substring(11, message.length).split(";");
         
         for (var i = 0; i < initiators.length; i++)
@@ -42,7 +46,7 @@ $(document).ready(function()
           
           if (current_initiator.length > 0)
           {
-            var invite_message = $("<p></p>").text("Invitation from " + current_initiator);
+            var invite_message = $("<p></p>").text("Invitation from " + current_initiator).attr("class", "invite_message");
             // onclick should call function redirecting to appropriate page
             var accept_option = $("<button></button>").text("Accept")
                                                       .attr("onclick", 
@@ -56,11 +60,21 @@ $(document).ready(function()
           }
         }
         
-        $("#content").empty();
-        $("#content").append(invitation_div);
+        // If there are no invitations, then display the invitation form instead
+        // This is most easily accomplished through reloading the page
+        if (($(".invite_message", invitation_div).size() == 0) && (initial_invitations > 0))
+        {
+          closeConnection();
+          window.location.replace("setup.php");
+        }
+        // Else display the invitations
+        else if ($(".invite_message", invitation_div).size() > 0)
+        {
+          $("#content").empty();
+          $("#content").append(invitation_div);
+        }
       }
       
-      closeConnection();
     }, false);
     /*
     source.addEventListener('open', function(e)
@@ -95,6 +109,7 @@ function accept(initiator, recipient)
                             recipient: recipient}).done(function(data)
                             {
                               $("body").append(data);
+                              closeConnection();
                               window.location.replace("game.php");
                             });
 }
@@ -114,6 +129,7 @@ function decline(initiator, recipient)
                               recipient: recipient}).done(function(data)
                               {
                                 $("body").append(data);
+                                closeConnection();
                                 window.location.replace("setup.php");
                               });
 }
