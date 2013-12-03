@@ -59,7 +59,7 @@
       foreach ($recipient_query as $row)
       {
         // If the invitation has not already been accepted or declined
-        if ($row['accepted'] != "TRUE" && $row['declined'] != "TRUE")
+        if ($row['accepted'] != TRUE && $row['declined'] != TRUE)
         {
           if (strlen($message) == 0)
           {
